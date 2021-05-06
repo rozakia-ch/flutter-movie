@@ -1,12 +1,5 @@
 # flutter-movie
 
-<table>
-   <tr>
-       <td><img src="apk/ss_1.jpeg" width=270 height=480></td>
-       <td><img src="apk/ss_2.jpeg" width=270 height=480></td>
-       <td><img src="apk/ss_3.jpeg" width=270 height=480></td>
-     </tr>
- </table>
  
 ## API: [The Movie Database API](https://developers.themoviedb.org/3)
 
@@ -24,3 +17,12 @@ Used Package:
 - shimmer: ^2.0.0
 
 [Download APK](https://github.com/rozakia-ch/flutter-movie/raw/main/apk/app-release.apk)
+
+
+<table>
+   <tr>
+       <td><img src="apk/ss_1.jpeg" width=270 height=480></td>
+       <td><img src="apk/ss_2.jpeg" width=270 height=480></td>
+       <td><img src="apk/ss_3.jpeg" width=270 height=480></td>
+     </tr>
+ </table>
