@@ -1,5 +1,14 @@
 # flutter-movie
-API: [The Movie Database API](https://developers.themoviedb.org/3)
+
+<table>
+   <tr>
+       <td><img src="apk/ss_1.jpeg" width=270 height=480></td>
+       <td><img src="apk/ss_2.jpeg" width=270 height=480></td>
+       <td><img src="apk/ss_3.jpeg" width=270 height=480></td>
+     </tr>
+ </table>
+ 
+## API: [The Movie Database API](https://developers.themoviedb.org/3)
 
 Used Package:
 - equatable: ^2.0.0
@@ -13,11 +22,5 @@ Used Package:
 - youtube_player_flutter: ^8.0.0
 - intl: ^0.17.0
 - shimmer: ^2.0.0
-<table>
-   <tr>
-       <td><img src="apk/ss_1.jpeg" width=270 height=480></td>
-       <td><img src="apk/ss_2.jpeg" width=270 height=480></td>
-       <td><img src="apk/ss_3.jpeg" width=270 height=480></td>
-     </tr>
- </table>
+
 [Download APK](https://github.com/rozakia-ch/flutter-movie/raw/main/apk/app-release.apk)
