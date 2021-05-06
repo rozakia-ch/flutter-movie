@@ -6,7 +6,7 @@ import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 
 class MovieGenre extends StatefulWidget {
   final List<Movie> movies;
-  MovieGenre({Key key, @required this.movies}) : super(key: key);
+  MovieGenre({Key? key, required this.movies}) : super(key: key);
   @override
   _MovieGenreState createState() => _MovieGenreState(movies);
 }
@@ -32,7 +32,7 @@ class _MovieGenreState extends State<MovieGenre> {
                 children: <Widget>[
                   movies[index].posterPath == null
                       ? Hero(
-                          tag: movies[index].id,
+                          tag: movies[index].id!,
                           child: Container(
                             width: 120.0,
                             height: 180.0,
@@ -54,7 +54,7 @@ class _MovieGenreState extends State<MovieGenre> {
                           ),
                         )
                       : Hero(
-                          tag: movies[index].id,
+                          tag: movies[index].id!,
                           child: Container(
                             width: 120.0,
                             height: 180.0,
@@ -64,7 +64,7 @@ class _MovieGenreState extends State<MovieGenre> {
                               image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                  "https://image.tmdb.org/t/p/w200/" + movies[index].posterPath,
+                                  "https://image.tmdb.org/t/p/w200/" + movies[index].posterPath!,
                                 ),
                               ),
                             ),
@@ -74,7 +74,7 @@ class _MovieGenreState extends State<MovieGenre> {
                   Container(
                     width: 100,
                     child: Text(
-                      movies[index].title,
+                      movies[index].title!,
                       maxLines: 2,
                       style: TextStyle(
                           height: 1.4,
@@ -99,7 +99,7 @@ class _MovieGenreState extends State<MovieGenre> {
                       ),
                       RatingBarIndicator(
                         itemSize: 8.0,
-                        rating: movies[index].voteAverage / 2,
+                        rating: movies[index].voteAverage! / 2,
                         direction: Axis.horizontal,
                         itemCount: 5,
                         itemPadding: EdgeInsets.symmetric(horizontal: 2.0),

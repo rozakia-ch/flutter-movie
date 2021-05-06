@@ -14,7 +14,7 @@ class TrendingRepository {
   /// Time Window	Description
   /// * [day]	- View the trending list for the day.
   /// * [week] -	View the trending list for the week.
-  Future<PersonResponse> getTrending({
+  Future getTrending({
     String mediaType = "all",
     String timeWindow = "week",
   }) async {

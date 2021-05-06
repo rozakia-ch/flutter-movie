@@ -1,8 +1,8 @@
 import 'package:flutter_movie_app/logic/models/movies/video/video.dart';
 
 class VideoResponse {
-  int id;
-  List<Video> results;
+  int? id;
+  List<Video>? results;
 
   VideoResponse({this.id, this.results});
 
@@ -11,7 +11,7 @@ class VideoResponse {
     if (json['results'] != null) {
       results = <Video>[];
       json['results'].forEach((v) {
-        results.add(new Video.fromJson(v));
+        results!.add(new Video.fromJson(v));
       });
     }
   }

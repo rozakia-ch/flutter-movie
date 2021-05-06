@@ -10,7 +10,7 @@ import 'package:flutter_movie_app/presentation/widgets/movie_loading.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MovieTopRated extends StatelessWidget {
-  const MovieTopRated({Key key}) : super(key: key);
+  const MovieTopRated({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MovieTopRated extends StatelessWidget {
           if (state is MovieTopRatedLoading) {
             return _buildLoadingWidget();
           } else if (state is MovieTopRatedLoaded) {
-            return _buildHomeWidget(context, state.result);
+            return _buildHomeWidget(context, state.result!);
           }
           return Container();
         },
@@ -44,7 +44,7 @@ class MovieTopRated extends StatelessWidget {
   // }
 
   Widget _buildHomeWidget(BuildContext context, MovieResponse data) {
-    List<Movie> movies = data.results;
+    List<Movie> movies = data.results!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -100,7 +100,7 @@ class MovieTopRated extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Hero(
-                              tag: movies[index].id,
+                              tag: movies[index].id!,
                               child: Container(
                                 width: 120.0,
                                 height: 180.0,
@@ -110,7 +110,7 @@ class MovieTopRated extends StatelessWidget {
                                   image: new DecorationImage(
                                     fit: BoxFit.cover,
                                     image: NetworkImage(
-                                      "https://image.tmdb.org/t/p/w200/" + movies[index].posterPath,
+                                      "https://image.tmdb.org/t/p/w200/" + movies[index].posterPath!,
                                     ),
                                   ),
                                 ),
@@ -120,7 +120,7 @@ class MovieTopRated extends StatelessWidget {
                             Container(
                               width: 100,
                               child: Text(
-                                movies[index].title,
+                                movies[index].title!,
                                 maxLines: 2,
                                 style: TextStyle(
                                     height: 1.4,
@@ -146,7 +146,7 @@ class MovieTopRated extends StatelessWidget {
                                 SizedBox(width: 5.0),
                                 RatingBarIndicator(
                                   itemSize: 8.0,
-                                  rating: movies[index].voteAverage / 2,
+                                  rating: movies[index].voteAverage! / 2,
                                   direction: Axis.horizontal,
                                   itemCount: 5,
                                   itemPadding: EdgeInsets.symmetric(horizontal: 2.0),

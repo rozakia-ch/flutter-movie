@@ -9,8 +9,8 @@ import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MovieByGenre extends StatelessWidget {
-  const MovieByGenre({Key key, this.genreId}) : super(key: key);
-  final int genreId;
+  const MovieByGenre({Key? key, this.genreId}) : super(key: key);
+  final int? genreId;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -20,7 +20,7 @@ class MovieByGenre extends StatelessWidget {
           if (state is DiscoverMovieLoading) {
             return _buildLoadingWidget();
           } else if (state is DiscoverMovieLoaded) {
-            return _buildHomeWidget(context, state.result);
+            return _buildHomeWidget(context, state.result!);
           }
           return Container();
         },
@@ -56,7 +56,7 @@ class MovieByGenre extends StatelessWidget {
   // }
 
   Widget _buildHomeWidget(BuildContext context, DiscoverResponse data) {
-    List<Movie> movies = data.results;
+    List<Movie> movies = data.results!;
     if (movies.length == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
@@ -126,14 +126,14 @@ class MovieByGenre extends StatelessWidget {
                               image: new DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage("https://image.tmdb.org/t/p/w200/" +
-                                      movies[index].posterPath)),
+                                      movies[index].posterPath!)),
                             ),
                           ),
                     SizedBox(height: 10.0),
                     Container(
                       width: 100,
                       child: Text(
-                        movies[index].title,
+                        movies[index].title!,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           height: 1.4,
@@ -160,7 +160,7 @@ class MovieByGenre extends StatelessWidget {
                         ),
                         RatingBarIndicator(
                           itemSize: 8.0,
-                          rating: movies[index].voteAverage / 2,
+                          rating: movies[index].voteAverage! / 2,
                           direction: Axis.horizontal,
                           itemCount: 5,
                           itemPadding: EdgeInsets.symmetric(horizontal: 2.0),

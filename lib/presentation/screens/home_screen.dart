@@ -8,7 +8,7 @@ import 'package:flutter_movie_app/presentation/widgets/movie_now_playing.dart';
 import 'package:flutter_movie_app/presentation/widgets/person_list.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,11 +2,11 @@ import 'package:flutter_movie_app/logic/models/movies/movie.dart';
 import 'package:flutter_movie_app/logic/models/movies/now_playing/dates.dart';
 
 class NowPlayingResponse {
-  Dates dates;
-  int page;
-  List<Movie> results;
-  int totalPages;
-  int totalResults;
+  Dates? dates;
+  int? page;
+  List<Movie>? results;
+  int? totalPages;
+  int? totalResults;
 
   NowPlayingResponse({this.dates, this.page, this.results, this.totalPages, this.totalResults});
 
@@ -16,7 +16,7 @@ class NowPlayingResponse {
     if (json['results'] != null) {
       results = <Movie>[];
       json['results'].forEach((v) {
-        results.add(new Movie.fromJson(v));
+        results!.add(new Movie.fromJson(v));
       });
     }
     totalPages = json['total_pages'];

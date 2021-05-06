@@ -8,7 +8,7 @@ import 'package:flutter_movie_app/logic/models/movies/video/video_response.dart'
 
 class MoviesRepository {
   final Dio _dio = Dio();
-  Future<MovieResponse> getMoviesTopRated() async {
+  Future getMoviesTopRated() async {
     var _params = {"api_key": ApiConstants.API_KEY, "language": "en-US", "page": 1};
     String _url = ApiConstants.BASE_URL + "movie/top_rated";
     try {
@@ -20,7 +20,7 @@ class MoviesRepository {
     }
   }
 
-  Future<NowPlayingResponse> getMoviesNowPlaying() async {
+  Future getMoviesNowPlaying() async {
     var _params = {"api_key": ApiConstants.API_KEY, "language": "en-US", "page": 1};
     String _url = ApiConstants.BASE_URL + "movie/now_playing";
     try {
@@ -33,7 +33,7 @@ class MoviesRepository {
   }
 
   /// movie_id integer required
-  Future<MovieDetailResponse> getMovieDetail({int id}) async {
+  Future getMovieDetail({int? id}) async {
     var _params = {"api_key": ApiConstants.API_KEY, "language": "en-US"};
     String _url = ApiConstants.BASE_URL + "movie/$id";
     try {
@@ -46,7 +46,7 @@ class MoviesRepository {
   }
 
   /// movie_id integer required
-  Future<VideoResponse> getMovieVideos({int id}) async {
+  Future getMovieVideos({int? id}) async {
     var _params = {"api_key": ApiConstants.API_KEY, "language": "en-US"};
     String _url = ApiConstants.BASE_URL + "movie/$id/videos";
     try {
@@ -59,7 +59,7 @@ class MoviesRepository {
   }
 
   /// movie_id integer required
-  Future<MovieResponse> getSimilarMovies({int id}) async {
+  Future getSimilarMovies({int? id}) async {
     var _params = {"api_key": ApiConstants.API_KEY, "language": "en-US"};
     String _url = ApiConstants.BASE_URL + "movie/$id/similar";
     try {
@@ -72,7 +72,7 @@ class MoviesRepository {
   }
 
   /// movie_id integer required
-  Future<CreditResponse> getCredit({int id}) async {
+  Future getCredit({int? id}) async {
     var _params = {"api_key": ApiConstants.API_KEY, "language": "en-US"};
     String _url = ApiConstants.BASE_URL + "movie/$id/credits";
     try {

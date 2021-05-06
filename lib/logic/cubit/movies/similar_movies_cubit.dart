@@ -10,7 +10,7 @@ class SimilarMoviesCubit extends Cubit<SimilarMoviesState> {
   MoviesRepository _moviesRepository = MoviesRepository();
 
   /// movie_id integer required
-  void similarMovies({int id}) async {
+  void similarMovies({int? id}) async {
     emit(SimilarMoviesLoading());
     MovieResponse _result = await _moviesRepository.getSimilarMovies(id: id);
     emit(SimilarMoviesLoaded(result: _result));

@@ -1,24 +1,24 @@
 class KnownFor {
-  String overview;
-  bool adult;
-  String backdropPath;
-  String mediaType;
-  List<int> genreIds;
+  String? overview;
+  bool? adult;
+  String? backdropPath;
+  String? mediaType;
+  List<int>? genreIds;
 
-  double id;
-  String originalLanguage;
-  String originalTitle;
-  String posterPath;
-  String title;
-  bool video;
-  double voteAverage;
-  double popularity;
-  double voteCount;
-  String releaseDate;
-  String firstAirDate;
-  String originalName;
-  List<String> originCountry;
-  String name;
+  double? id;
+  String? originalLanguage;
+  String? originalTitle;
+  String? posterPath;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  double? popularity;
+  double? voteCount;
+  String? releaseDate;
+  String? firstAirDate;
+  String? originalName;
+  List<String>? originCountry;
+  String? name;
 
   KnownFor(
       {this.overview,

@@ -8,8 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 
 class Casts extends StatelessWidget {
-  const Casts({Key key, this.id}) : super(key: key);
-  final int id;
+  const Casts({Key? key, this.id}) : super(key: key);
+  final int? id;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -19,7 +19,7 @@ class Casts extends StatelessWidget {
           if (state is MovieCreditLoading) {
             return _buildLoadingWidget();
           } else if (state is MovieCreditLoaded) {
-            return _buildCastWidget(context, state.result);
+            return _buildCastWidget(context, state.result!);
           }
           return Container();
         },
@@ -108,7 +108,7 @@ class Casts extends StatelessWidget {
   // }
 
   Widget _buildCastWidget(BuildContext context, CreditResponse data) {
-    List<Cast> casts = data.cast;
+    List<Cast> casts = data.cast!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -151,7 +151,7 @@ class Casts extends StatelessWidget {
                           children: <Widget>[
                             casts[index].profilePath == null
                                 ? Hero(
-                                    tag: casts[index].id,
+                                    tag: casts[index].id!,
                                     child: Container(
                                       width: 70.0,
                                       height: 70.0,
@@ -166,7 +166,7 @@ class Casts extends StatelessWidget {
                                     ),
                                   )
                                 : Hero(
-                                    tag: casts[index].id,
+                                    tag: casts[index].id!,
                                     child: Container(
                                       width: 70.0,
                                       height: 70.0,
@@ -176,7 +176,7 @@ class Casts extends StatelessWidget {
                                           fit: BoxFit.cover,
                                           image: NetworkImage(
                                             "https://image.tmdb.org/t/p/w300/" +
-                                                casts[index].profilePath,
+                                                casts[index].profilePath!,
                                           ),
                                         ),
                                       ),
@@ -184,7 +184,7 @@ class Casts extends StatelessWidget {
                                   ),
                             SizedBox(height: 10.0),
                             Text(
-                              casts[index].name,
+                              casts[index].name!,
                               maxLines: 2,
                               style: TextStyle(
                                   height: 1.4,
@@ -196,7 +196,7 @@ class Casts extends StatelessWidget {
                               height: 3.0,
                             ),
                             Text(
-                              casts[index].character,
+                              casts[index].character!,
                               maxLines: 2,
                               textAlign: TextAlign.center,
                               style: TextStyle(

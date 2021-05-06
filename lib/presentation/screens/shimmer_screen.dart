@@ -3,7 +3,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 
 class ShimmerScreen extends StatelessWidget {
-  const ShimmerScreen({Key key}) : super(key: key);
+  const ShimmerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

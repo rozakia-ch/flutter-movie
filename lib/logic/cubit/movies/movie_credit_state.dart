@@ -16,8 +16,8 @@ class MovieCreditLoading extends MovieCreditState {
 
 // ignore: must_be_immutable
 class MovieCreditLoaded extends MovieCreditState {
-  CreditResponse result;
+  CreditResponse? result;
   MovieCreditLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

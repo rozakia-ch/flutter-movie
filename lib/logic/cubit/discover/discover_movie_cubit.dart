@@ -10,7 +10,7 @@ class DiscoverMovieCubit extends Cubit<DiscoverMovieState> {
   DiscoverRepository _discoverRepository = DiscoverRepository();
 
   /// * String [withGenres] Comma separated value of genre ids that you want to include in the results.
-  void getDiscoverMovie({int id}) async {
+  void getDiscoverMovie({int? id}) async {
     emit(DiscoverMovieLoading());
     final DiscoverResponse _result = await _discoverRepository.getDiscoverMovie(withGenres: id);
     emit(DiscoverMovieLoaded(result: _result));

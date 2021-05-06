@@ -16,8 +16,8 @@ class MovieDetailLoading extends MovieDetailState {
 
 // ignore: must_be_immutable
 class MovieDetailLoaded extends MovieDetailState {
-  MovieDetailResponse result;
+  MovieDetailResponse? result;
   MovieDetailLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

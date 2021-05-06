@@ -6,7 +6,7 @@ class DiscoverRepository {
   final Dio _dio = Dio();
 
   /// * String [withGenres] Comma separated value of genre ids that you want to include in the results.
-  Future<DiscoverResponse> getDiscoverMovie({int withGenres}) async {
+  Future getDiscoverMovie({int? withGenres}) async {
     var _params = {
       "api_key": ApiConstants.API_KEY,
       "language": "en-US",

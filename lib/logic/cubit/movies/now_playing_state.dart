@@ -16,8 +16,8 @@ class NowPlayingLoading extends NowPlayingState {
 
 // ignore: must_be_immutable
 class NowPlayingLoaded extends NowPlayingState {
-  NowPlayingResponse result;
+  NowPlayingResponse? result;
   NowPlayingLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

@@ -16,8 +16,8 @@ class MovieTopRatedLoading extends MovieTopRatedState {
 
 // ignore: must_be_immutable
 class MovieTopRatedLoaded extends MovieTopRatedState {
-  MovieResponse result;
+  MovieResponse? result;
   MovieTopRatedLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

@@ -1,10 +1,10 @@
 import 'package:flutter_movie_app/logic/models/trending/person.dart';
 
 class PersonResponse {
-  int page;
-  List<Person> results;
-  int totalPages;
-  int totalResults;
+  int? page;
+  List<Person>? results;
+  int? totalPages;
+  int? totalResults;
 
   PersonResponse({this.page, this.results, this.totalPages, this.totalResults});
 
@@ -13,7 +13,7 @@ class PersonResponse {
     if (json['results'] != null) {
       results = <Person>[];
       json['results'].forEach((v) {
-        results.add(new Person.fromJson(v));
+        results!.add(new Person.fromJson(v));
       });
     }
     totalPages = json['total_pages'];

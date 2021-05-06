@@ -10,7 +10,7 @@ class MovieCreditCubit extends Cubit<MovieCreditState> {
   MoviesRepository _moviesRepository = MoviesRepository();
 
   /// movie_id integer required
-  void movieCredits({int id}) async {
+  void movieCredits({int? id}) async {
     emit(MovieCreditLoading());
     CreditResponse _result = await _moviesRepository.getCredit(id: id);
     emit(MovieCreditLoaded(result: _result));

@@ -10,7 +10,7 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
   MoviesRepository _moviesRepository = MoviesRepository();
 
   /// movie_id integer required
-  void movieDetail({int id}) async {
+  void movieDetail({int? id}) async {
     emit(MovieDetailLoading());
     MovieDetailResponse _result = await _moviesRepository.getMovieDetail(id: id);
     emit(MovieDetailLoaded(result: _result));

@@ -17,8 +17,8 @@ class TrendingLoading extends TrendingState {
 
 // ignore: must_be_immutable
 class TrendingLoaded extends TrendingState {
-  PersonResponse result;
+  PersonResponse? result;
   TrendingLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

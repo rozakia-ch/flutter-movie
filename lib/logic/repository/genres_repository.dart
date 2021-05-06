@@ -4,7 +4,7 @@ import 'package:flutter_movie_app/logic/models/genres/genre_response.dart';
 
 class GenresRepository {
   final Dio _dio = Dio();
-  Future<GenreResponse> getGenresMovie() async {
+  Future getGenresMovie() async {
     var params = {"api_key": ApiConstants.API_KEY, "language": "en-US"};
     String _url = ApiConstants.BASE_URL + "genre/movie/list";
     try {

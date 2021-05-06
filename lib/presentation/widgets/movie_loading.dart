@@ -5,7 +5,7 @@ import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MovieLoading extends StatelessWidget {
-  const MovieLoading({Key key}) : super(key: key);
+  const MovieLoading({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

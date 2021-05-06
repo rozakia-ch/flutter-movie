@@ -7,8 +7,8 @@ import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 import 'package:intl/intl.dart';
 
 class MovieInfo extends StatelessWidget {
-  const MovieInfo({Key key, this.id}) : super(key: key);
-  final int id;
+  const MovieInfo({Key? key, this.id}) : super(key: key);
+  final int? id;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -18,7 +18,7 @@ class MovieInfo extends StatelessWidget {
           if (state is MovieDetailLoading) {
             return _buildLoadingWidget();
           } else if (state is MovieDetailLoaded) {
-            return _buildMovieDetailWidget(state.result);
+            return _buildMovieDetailWidget(state.result!);
           }
           return Container();
         },
@@ -116,7 +116,7 @@ class MovieInfo extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    DateFormat.yMMMd().format(DateTime.parse(detail.releaseDate)),
+                    DateFormat.yMMMd().format(DateTime.parse(detail.releaseDate!)),
                     style: TextStyle(
                       color: Style.Colors.secondColor,
                       fontWeight: FontWeight.bold,
@@ -150,7 +150,7 @@ class MovieInfo extends StatelessWidget {
                 padding: EdgeInsets.only(right: 10.0, top: 10.0),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: detail.genres.length,
+                  itemCount: detail.genres!.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(right: 10.0),
@@ -161,7 +161,7 @@ class MovieInfo extends StatelessWidget {
                           border: Border.all(width: 1.0, color: Colors.white),
                         ),
                         child: Text(
-                          detail.genres[index].name,
+                          detail.genres![index].name!,
                           maxLines: 2,
                           style: TextStyle(
                             height: 1.4,

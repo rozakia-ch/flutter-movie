@@ -3,14 +3,14 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 
 class ShimmerEffect extends StatelessWidget {
-  const ShimmerEffect({Key key, this.child}) : super(key: key);
-  final Widget child;
+  const ShimmerEffect({Key? key, this.child}) : super(key: key);
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: Style.Colors.titleColor,
       highlightColor: Colors.white60,
-      child: child,
+      child: child!,
     );
     //   Shimmer(
     //   gradient: LinearGradient(

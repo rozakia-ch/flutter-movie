@@ -4,7 +4,7 @@ import 'package:flutter_movie_app/presentation/widgets/shimmer_effect.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PersonLoading extends StatelessWidget {
-  const PersonLoading({Key key}) : super(key: key);
+  const PersonLoading({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

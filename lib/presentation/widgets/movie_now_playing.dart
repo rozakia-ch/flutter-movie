@@ -10,7 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_indicator/page_indicator.dart';
 
 class NowPlayingWidget extends StatelessWidget {
-  const NowPlayingWidget({Key key}) : super(key: key);
+  const NowPlayingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class NowPlayingWidget extends StatelessWidget {
           if (state is NowPlayingLoading) {
             return _buildLoadingWidget(context);
           } else if (state is NowPlayingLoaded) {
-            return _buildHomeWidget(context, state.result);
+            return _buildHomeWidget(context, state.result!);
           }
           return Container();
         },
@@ -63,7 +63,7 @@ class NowPlayingWidget extends StatelessWidget {
 
   Widget _buildHomeWidget(BuildContext context, NowPlayingResponse data) {
     PageController pageController = PageController(viewportFraction: 1, keepPage: true);
-    List<Movie> movies = data.results;
+    List<Movie> movies = data.results!;
     if (movies.length == 0) {
       return Container(
         width: MediaQuery.of(context).size.width,
@@ -110,7 +110,7 @@ class NowPlayingWidget extends StatelessWidget {
                 child: Stack(
                   children: [
                     Hero(
-                      tag: movies[index].id,
+                      tag: movies[index].id!,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: 220.0,
@@ -119,7 +119,7 @@ class NowPlayingWidget extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
-                              "https://image.tmdb.org/t/p/original/" + movies[index].backdropPath,
+                              "https://image.tmdb.org/t/p/original/" + movies[index].backdropPath!,
                             ),
                           ),
                         ),
@@ -161,7 +161,7 @@ class NowPlayingWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                movies[index].title,
+                                movies[index].title!,
                                 style: TextStyle(
                                   height: 1.5,
                                   color: Colors.white,

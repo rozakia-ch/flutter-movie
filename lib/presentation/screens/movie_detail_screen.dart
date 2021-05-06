@@ -14,26 +14,26 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MovieDetailScreen extends StatefulWidget {
-  const MovieDetailScreen({Key key, this.movie}) : super(key: key);
-  final Movie movie;
+  const MovieDetailScreen({Key? key, this.movie}) : super(key: key);
+  final Movie? movie;
 
   @override
   _MovieDetailScreenState createState() => _MovieDetailScreenState();
 }
 
 class _MovieDetailScreenState extends State<MovieDetailScreen> {
-  ScrollController _scrollController;
+  ScrollController? _scrollController;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-    _scrollController.addListener(() => setState(() {}));
+    _scrollController!.addListener(() => setState(() {}));
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    _scrollController!.dispose();
     super.dispose();
   }
 
@@ -52,9 +52,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(
-                    widget.movie.title.length > 40
-                        ? widget.movie.title.substring(0, 37) + "..."
-                        : widget.movie.title,
+                    widget.movie!.title!.length > 40
+                        ? widget.movie!.title!.substring(0, 37) + "..."
+                        : widget.movie!.title!,
                     style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
                   ),
                   background: Stack(
@@ -65,7 +65,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                           image: new DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
-                              "https://image.tmdb.org/t/p/original/" + widget.movie.backdropPath,
+                              "https://image.tmdb.org/t/p/original/" + widget.movie!.backdropPath!,
                             ),
                           ),
                         ),
@@ -98,7 +98,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              widget.movie.voteAverage.toString(),
+                              widget.movie!.voteAverage.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.0,
@@ -108,7 +108,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                             SizedBox(width: 5.0),
                             RatingBarIndicator(
                               itemSize: 10.0,
-                              rating: widget.movie.voteAverage / 2,
+                              rating: widget.movie!.voteAverage! / 2,
                               direction: Axis.horizontal,
                               itemCount: 5,
                               itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
@@ -135,14 +135,14 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          widget.movie.overview,
+                          widget.movie!.overview!,
                           style: TextStyle(color: Colors.white, fontSize: 12.0, height: 1.5),
                         ),
                       ),
                       SizedBox(height: 10.0),
-                      MovieInfo(id: widget.movie.id),
-                      Casts(id: widget.movie.id),
-                      SimilarMovie(id: widget.movie.id)
+                      MovieInfo(id: widget.movie!.id),
+                      Casts(id: widget.movie!.id),
+                      SimilarMovie(id: widget.movie!.id)
                     ],
                   ),
                 ),
@@ -150,11 +150,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             ],
           ),
           BlocProvider(
-            create: (context) => MovieVideoCubit()..video(id: widget.movie.id),
+            create: (context) => MovieVideoCubit()..video(id: widget.movie!.id),
             child: BlocBuilder<MovieVideoCubit, MovieVideoState>(
               builder: (context, state) {
                 if (state is MovieVideoLoaded) {
-                  return _buildFab(context, state.result);
+                  return _buildFab(context, state.result!);
                 }
                 return Container();
               },
@@ -166,7 +166,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   }
 
   Widget _buildFab(BuildContext context, VideoResponse data) {
-    List<Video> videos = data.results;
+    List<Video>? videos = data.results;
     //starting fab position
     final double defaultTopMargin = 200.0 - 4.0;
     //pixels from top where scaling should start
@@ -176,8 +176,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
 
     double top = defaultTopMargin;
     double scale = 1.0;
-    if (_scrollController.hasClients) {
-      double offset = _scrollController.offset;
+    if (_scrollController!.hasClients) {
+      double offset = _scrollController!.offset;
       top -= offset;
       if (offset < defaultTopMargin - scaleStart) {
         //offset small => don't scale down
@@ -205,7 +205,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
               MaterialPageRoute(
                 builder: (context) => VideoPlayerScreen(
                   controller: YoutubePlayerController(
-                    initialVideoId: videos[0].key,
+                    initialVideoId: videos![0].key!,
                     flags: YoutubePlayerFlags(
                       autoPlay: true,
                       // mute: true,

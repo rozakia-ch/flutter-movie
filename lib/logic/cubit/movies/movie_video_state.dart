@@ -16,8 +16,8 @@ class MovieVideoLoading extends MovieVideoState {
 
 // ignore: must_be_immutable
 class MovieVideoLoaded extends MovieVideoState {
-  VideoResponse result;
+  VideoResponse? result;
   MovieVideoLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

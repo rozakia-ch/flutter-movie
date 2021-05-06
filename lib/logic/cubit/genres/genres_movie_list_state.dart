@@ -16,8 +16,8 @@ class GenresMovieListLoading extends GenresMovieListState {
 
 // ignore: must_be_immutable
 class GenresMovieListLoaded extends GenresMovieListState {
-  GenreResponse result;
+  GenreResponse? result;
   GenresMovieListLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

@@ -8,7 +8,7 @@ import 'package:flutter_movie_app/presentation/widgets/person_loading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PersonList extends StatelessWidget {
-  const PersonList({Key key}) : super(key: key);
+  const PersonList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class PersonList extends StatelessWidget {
           if (state is TrendingLoading) {
             return _buildLoadingWidget();
           } else if (state is TrendingLoaded) {
-            return _buildHomeWidget(context, state.result);
+            return _buildHomeWidget(context, state.result!);
           }
           return Container();
         },
@@ -43,7 +43,7 @@ Widget _buildLoadingWidget() {
 // }
 
 Widget _buildHomeWidget(BuildContext context, PersonResponse data) {
-  List<Person> persons = data.results;
+  List<Person> persons = data.results!;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -89,7 +89,7 @@ Widget _buildHomeWidget(BuildContext context, PersonResponse data) {
                         children: [
                           persons[index].profilePath == null
                               ? Hero(
-                                  tag: persons[index].id,
+                                  tag: persons[index].id!,
                                   child: Container(
                                     width: 70.0,
                                     height: 70.0,
@@ -104,7 +104,7 @@ Widget _buildHomeWidget(BuildContext context, PersonResponse data) {
                                   ),
                                 )
                               : Hero(
-                                  tag: persons[index].id,
+                                  tag: persons[index].id!,
                                   child: Container(
                                     width: 70.0,
                                     height: 70.0,
@@ -114,7 +114,7 @@ Widget _buildHomeWidget(BuildContext context, PersonResponse data) {
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
                                           "https://image.tmdb.org/t/p/w300/" +
-                                              persons[index].profilePath,
+                                              persons[index].profilePath!,
                                         ),
                                       ),
                                     ),
@@ -122,7 +122,7 @@ Widget _buildHomeWidget(BuildContext context, PersonResponse data) {
                                 ),
                           SizedBox(height: 10.0),
                           Text(
-                            persons[index].name,
+                            persons[index].name!,
                             maxLines: 2,
                             style: TextStyle(
                               height: 1.4,
@@ -133,7 +133,7 @@ Widget _buildHomeWidget(BuildContext context, PersonResponse data) {
                           ),
                           SizedBox(height: 3.0),
                           Text(
-                            "Trending for " + persons[index].knownForDepartment,
+                            "Trending for " + persons[index].knownForDepartment!,
                             maxLines: 2,
                             style: TextStyle(
                               height: 1.4,

@@ -1,10 +1,10 @@
 import 'package:flutter_movie_app/logic/models/movies/movie.dart';
 
 class DiscoverResponse {
-  int page;
-  List<Movie> results;
-  int totalPages;
-  int totalResults;
+  int? page;
+  List<Movie>? results;
+  int? totalPages;
+  int? totalResults;
 
   DiscoverResponse({this.page, this.results, this.totalPages, this.totalResults});
 
@@ -13,7 +13,7 @@ class DiscoverResponse {
     if (json['results'] != null) {
       results = <Movie>[];
       json['results'].forEach((v) {
-        results.add(new Movie.fromJson(v));
+        results!.add(new Movie.fromJson(v));
       });
     }
     totalPages = json['total_pages'];

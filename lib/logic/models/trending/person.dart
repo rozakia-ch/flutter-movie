@@ -1,15 +1,15 @@
 import 'package:flutter_movie_app/logic/models/trending/known_for.dart';
 
 class Person {
-  String profilePath;
-  int id;
-  int gender;
-  String knownForDepartment;
-  bool adult;
-  List<KnownFor> knownFor;
-  String name;
-  double popularity;
-  String mediaType;
+  String? profilePath;
+  int? id;
+  int? gender;
+  String? knownForDepartment;
+  bool? adult;
+  List<KnownFor>? knownFor;
+  String? name;
+  double? popularity;
+  String? mediaType;
 
   Person(
       {this.profilePath,
@@ -31,7 +31,7 @@ class Person {
     if (json['known_for'] != null) {
       knownFor = <KnownFor>[];
       json['known_for'].forEach((v) {
-        knownFor.add(new KnownFor.fromJson(v));
+        knownFor!.add(new KnownFor.fromJson(v));
       });
     }
     name = json['name'];

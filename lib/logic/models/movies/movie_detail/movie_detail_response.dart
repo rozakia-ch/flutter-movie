@@ -5,31 +5,31 @@ import 'package:flutter_movie_app/logic/models/movies/movie_detail/product_count
 import 'package:flutter_movie_app/logic/models/movies/movie_detail/spoken_languages.dart';
 
 class MovieDetailResponse {
-  bool adult;
-  String backdropPath;
-  BelongsToCollection belongsToCollection;
-  int budget;
-  List<Genre> genres;
-  String homepage;
-  int id;
-  String imdbId;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
-  List<ProductionCompanies> productionCompanies;
-  List<ProductionCountries> productionCountries;
-  String releaseDate;
-  int revenue;
-  int runtime;
-  List<SpokenLanguages> spokenLanguages;
-  String status;
-  String tagline;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  bool? adult;
+  String? backdropPath;
+  BelongsToCollection? belongsToCollection;
+  int? budget;
+  List<Genre>? genres;
+  String? homepage;
+  int? id;
+  String? imdbId;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  List<ProductionCompanies>? productionCompanies;
+  List<ProductionCountries>? productionCountries;
+  String? releaseDate;
+  int? revenue;
+  int? runtime;
+  List<SpokenLanguages>? spokenLanguages;
+  String? status;
+  String? tagline;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
 
   MovieDetailResponse(
       {this.adult,
@@ -69,7 +69,7 @@ class MovieDetailResponse {
     if (json['genres'] != null) {
       genres = <Genre>[];
       json['genres'].forEach((v) {
-        genres.add(new Genre.fromJson(v));
+        genres!.add(new Genre.fromJson(v));
       });
     }
     homepage = json['homepage'];
@@ -83,13 +83,13 @@ class MovieDetailResponse {
     if (json['production_companies'] != null) {
       productionCompanies = <ProductionCompanies>[];
       json['production_companies'].forEach((v) {
-        productionCompanies.add(new ProductionCompanies.fromJson(v));
+        productionCompanies!.add(new ProductionCompanies.fromJson(v));
       });
     }
     if (json['production_countries'] != null) {
       productionCountries = <ProductionCountries>[];
       json['production_countries'].forEach((v) {
-        productionCountries.add(new ProductionCountries.fromJson(v));
+        productionCountries!.add(new ProductionCountries.fromJson(v));
       });
     }
     releaseDate = json['release_date'];
@@ -98,7 +98,7 @@ class MovieDetailResponse {
     if (json['spoken_languages'] != null) {
       spokenLanguages = <SpokenLanguages>[];
       json['spoken_languages'].forEach((v) {
-        spokenLanguages.add(new SpokenLanguages.fromJson(v));
+        spokenLanguages!.add(new SpokenLanguages.fromJson(v));
       });
     }
     status = json['status'];

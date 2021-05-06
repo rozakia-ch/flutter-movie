@@ -16,8 +16,8 @@ class DiscoverMovieLoading extends DiscoverMovieState {
 
 // ignore: must_be_immutable
 class DiscoverMovieLoaded extends DiscoverMovieState {
-  DiscoverResponse result;
+  DiscoverResponse? result;
   DiscoverMovieLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }

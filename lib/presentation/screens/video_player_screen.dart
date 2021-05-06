@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerScreen extends StatelessWidget {
-  const VideoPlayerScreen({Key key, this.controller}) : super(key: key);
-  final YoutubePlayerController controller;
+  const VideoPlayerScreen({Key? key, this.controller}) : super(key: key);
+  final YoutubePlayerController? controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +12,7 @@ class VideoPlayerScreen extends StatelessWidget {
         children: [
           Center(
             child: YoutubePlayer(
-              controller: controller,
+              controller: controller!,
               showVideoProgressIndicator: true,
             ),
           ),

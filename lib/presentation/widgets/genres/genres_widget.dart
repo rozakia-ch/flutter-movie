@@ -6,7 +6,7 @@ import 'package:flutter_movie_app/logic/models/genres/genre_response.dart';
 import 'package:flutter_movie_app/presentation/widgets/genres/genres_list.dart';
 
 class GenresWidget extends StatelessWidget {
-  const GenresWidget({Key key}) : super(key: key);
+  const GenresWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class GenresWidget extends StatelessWidget {
           //   return _buildLoadingWidget();
           // } else
           if (state is GenresMovieListLoaded) {
-            return _buildHomeWidget(context, state.result);
+            return _buildHomeWidget(context, state.result!);
           }
           return Container();
         },
@@ -56,7 +56,7 @@ class GenresWidget extends StatelessWidget {
 // }
 
 Widget _buildHomeWidget(BuildContext context, GenreResponse data) {
-  List<Genre> genres = data.genres;
+  List<Genre> genres = data.genres!;
   if (genres.length == 0) {
     return Container(
       width: MediaQuery.of(context).size.width,

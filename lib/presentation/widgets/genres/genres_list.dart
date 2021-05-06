@@ -4,19 +4,19 @@ import 'package:flutter_movie_app/presentation/widgets/genres/movie_by_genre.dar
 import 'package:flutter_movie_app/presentation/style/style.dart' as Style;
 
 class GenresList extends StatefulWidget {
-  const GenresList({Key key, this.genres}) : super(key: key);
-  final List<Genre> genres;
+  const GenresList({Key? key, this.genres}) : super(key: key);
+  final List<Genre>? genres;
 
   @override
   _GenresListState createState() => _GenresListState();
 }
 
 class _GenresListState extends State<GenresList> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: widget.genres.length);
+    _tabController = TabController(vsync: this, length: widget.genres!.length);
   }
 
   @override
@@ -24,7 +24,7 @@ class _GenresListState extends State<GenresList> with SingleTickerProviderStateM
     return Container(
       height: 307.0,
       child: DefaultTabController(
-        length: widget.genres.length,
+        length: widget.genres!.length,
         child: Scaffold(
           backgroundColor: Style.Colors.mainColor,
           appBar: PreferredSize(
@@ -39,12 +39,12 @@ class _GenresListState extends State<GenresList> with SingleTickerProviderStateM
                 unselectedLabelColor: Style.Colors.titleColor,
                 labelColor: Colors.white,
                 isScrollable: true,
-                tabs: widget.genres.map(
+                tabs: widget.genres!.map(
                   (Genre genre) {
                     return Container(
                       padding: EdgeInsets.only(bottom: 15.0, top: 10.0),
                       child: new Text(
-                        genre.name.toUpperCase(),
+                        genre.name!.toUpperCase(),
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.bold,
@@ -59,7 +59,7 @@ class _GenresListState extends State<GenresList> with SingleTickerProviderStateM
           body: TabBarView(
             controller: _tabController,
             physics: NeverScrollableScrollPhysics(),
-            children: widget.genres.map((Genre genre) {
+            children: widget.genres!.map((Genre genre) {
               return MovieByGenre(
                 genreId: genre.id,
               );
@@ -72,7 +72,7 @@ class _GenresListState extends State<GenresList> with SingleTickerProviderStateM
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 }

@@ -16,8 +16,8 @@ class SimilarMoviesLoading extends SimilarMoviesState {
 
 // ignore: must_be_immutable
 class SimilarMoviesLoaded extends SimilarMoviesState {
-  MovieResponse result;
+  MovieResponse? result;
   SimilarMoviesLoaded({this.result});
   @override
-  List<Object> get props => [result];
+  List<Object?> get props => [result];
 }
