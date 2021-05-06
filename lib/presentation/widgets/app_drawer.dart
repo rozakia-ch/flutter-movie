@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie_app/presentation/screens/shimmer_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key key}) : super(key: key);
@@ -9,7 +10,15 @@ class AppDrawer extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: <Widget>[
         _createHeader(),
-        _createDrawerItem(icon: Icons.contacts, text: 'Shimmer', onTap: () {}),
+        _createDrawerItem(
+            icon: Icons.contacts,
+            text: 'Shimmer',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ShimmerScreen()),
+              );
+            }),
         Divider(),
         _createDrawerItem(icon: Icons.collections_bookmark, text: 'Steps'),
         Divider(),

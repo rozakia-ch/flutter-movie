@@ -11,33 +11,40 @@ import 'package:flutter_movie_app/presentation/widgets/casts.dart';
 import 'package:flutter_movie_app/presentation/widgets/movie_info.dart';
 import 'package:flutter_movie_app/presentation/widgets/similar_movie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:sliver_fab/sliver_fab.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class MovieDetailScreen extends StatelessWidget {
+class MovieDetailScreen extends StatefulWidget {
   const MovieDetailScreen({Key key, this.movie}) : super(key: key);
   final Movie movie;
+
+  @override
+  _MovieDetailScreenState createState() => _MovieDetailScreenState();
+}
+
+class _MovieDetailScreenState extends State<MovieDetailScreen> {
+  ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Style.Colors.mainColor,
-      body: Builder(
-        builder: (context) {
-          return SliverFab(
-            floatingPosition: FloatingPosition(right: 20),
-            floatingWidget: BlocProvider(
-              create: (context) => MovieVideoCubit()..video(id: movie.id),
-              child: BlocBuilder<MovieVideoCubit, MovieVideoState>(
-                builder: (context, state) {
-                  if (state is MovieVideoLoaded) {
-                    return _buildVideoWidget(context, state.result);
-                  }
-                  return Container();
-                },
-              ),
-            ),
-            expandedHeight: 200.0,
+      body: Stack(
+        children: [
+          CustomScrollView(
+            controller: _scrollController,
             slivers: [
               SliverAppBar(
                 backgroundColor: Style.Colors.mainColor,
@@ -45,7 +52,9 @@ class MovieDetailScreen extends StatelessWidget {
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   title: Text(
-                    movie.title.length > 40 ? movie.title.substring(0, 37) + "..." : movie.title,
+                    widget.movie.title.length > 40
+                        ? widget.movie.title.substring(0, 37) + "..."
+                        : widget.movie.title,
                     style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
                   ),
                   background: Stack(
@@ -56,7 +65,7 @@ class MovieDetailScreen extends StatelessWidget {
                           image: new DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
-                              "https://image.tmdb.org/t/p/original/" + movie.backdropPath,
+                              "https://image.tmdb.org/t/p/original/" + widget.movie.backdropPath,
                             ),
                           ),
                         ),
@@ -89,7 +98,7 @@ class MovieDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              movie.voteAverage.toString(),
+                              widget.movie.voteAverage.toString(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.0,
@@ -99,7 +108,7 @@ class MovieDetailScreen extends StatelessWidget {
                             SizedBox(width: 5.0),
                             RatingBarIndicator(
                               itemSize: 10.0,
-                              rating: movie.voteAverage / 2,
+                              rating: widget.movie.voteAverage / 2,
                               direction: Axis.horizontal,
                               itemCount: 5,
                               itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
@@ -126,46 +135,89 @@ class MovieDetailScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          movie.overview,
+                          widget.movie.overview,
                           style: TextStyle(color: Colors.white, fontSize: 12.0, height: 1.5),
                         ),
                       ),
                       SizedBox(height: 10.0),
-                      MovieInfo(id: movie.id),
-                      Casts(id: movie.id),
-                      SimilarMovie(id: movie.id)
+                      MovieInfo(id: widget.movie.id),
+                      Casts(id: widget.movie.id),
+                      SimilarMovie(id: widget.movie.id)
                     ],
                   ),
                 ),
               )
             ],
-          );
-        },
+          ),
+          BlocProvider(
+            create: (context) => MovieVideoCubit()..video(id: widget.movie.id),
+            child: BlocBuilder<MovieVideoCubit, MovieVideoState>(
+              builder: (context, state) {
+                if (state is MovieVideoLoaded) {
+                  return _buildFab(context, state.result);
+                }
+                return Container();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildVideoWidget(BuildContext context, VideoResponse data) {
+  Widget _buildFab(BuildContext context, VideoResponse data) {
     List<Video> videos = data.results;
-    return FloatingActionButton(
-      backgroundColor: Style.Colors.secondColor,
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => VideoPlayerScreen(
-              controller: YoutubePlayerController(
-                initialVideoId: videos[0].key,
-                flags: YoutubePlayerFlags(
-                  autoPlay: true,
-                  // mute: true,
+    //starting fab position
+    final double defaultTopMargin = 200.0 - 4.0;
+    //pixels from top where scaling should start
+    final double scaleStart = 96.0;
+    //pixels from top where scaling should end
+    final double scaleEnd = scaleStart / 2;
+
+    double top = defaultTopMargin;
+    double scale = 1.0;
+    if (_scrollController.hasClients) {
+      double offset = _scrollController.offset;
+      top -= offset;
+      if (offset < defaultTopMargin - scaleStart) {
+        //offset small => don't scale down
+        scale = 1.0;
+      } else if (offset < defaultTopMargin - scaleEnd) {
+        //offset between scaleStart and scaleEnd => scale down
+        scale = (defaultTopMargin - scaleEnd - offset) / scaleEnd;
+      } else {
+        //offset passed scaleEnd => hide fab
+        scale = 0.0;
+      }
+    }
+
+    return Positioned(
+      top: top,
+      right: 16.0,
+      child: Transform(
+        transform: Matrix4.identity()..scale(scale),
+        alignment: Alignment.center,
+        child: FloatingActionButton(
+          backgroundColor: Style.Colors.secondColor,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VideoPlayerScreen(
+                  controller: YoutubePlayerController(
+                    initialVideoId: videos[0].key,
+                    flags: YoutubePlayerFlags(
+                      autoPlay: true,
+                      // mute: true,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        );
-      },
-      child: Icon(Icons.play_arrow),
+            );
+          },
+          child: Icon(Icons.play_arrow),
+        ),
+      ),
     );
   }
 }

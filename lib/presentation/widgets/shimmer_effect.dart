@@ -7,14 +7,19 @@ class ShimmerEffect extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Shimmer(
-      gradient: LinearGradient(
-        colors: [Style.Colors.titleColor, Colors.white54, Style.Colors.titleColor],
-        stops: [0.45, 0.50, 0.55],
-        begin: Alignment.bottomLeft,
-        end: Alignment.topRight,
-      ),
+    return Shimmer.fromColors(
+      baseColor: Style.Colors.titleColor,
+      highlightColor: Colors.white60,
       child: child,
     );
+    //   Shimmer(
+    //   gradient: LinearGradient(
+    //     colors: [Style.Colors.titleColor, Colors.white54, Style.Colors.titleColor],
+    //     stops: [0.45, 0.50, 0.55],
+    //     begin: Alignment.bottomLeft,
+    //     end: Alignment.topRight,
+    //   ),
+    //   child: child,
+    // );
   }
 }
